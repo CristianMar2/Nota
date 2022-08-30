@@ -36,15 +36,15 @@ public class BatalhaNaval
         //Thread.sleep(3000);
     }
     public static void verificarBarco() {
-        int posX, posY, quantBarco = 0;
+        int posX, posY;
 
         Random aleatorio = new Random();
 
-        for (int i = 0; i < quantidadeBarco; i++) {
+        for (int i = 0; i < quantidadeBarco;) {
             posX = aleatorio.nextInt(tamanhoTab);
             posY = aleatorio.nextInt(tamanhoTab);
             if (inserirBarco(posX, posY)) {
-                quantBarco++;
+                i++;
             }
         }
     }
@@ -57,6 +57,7 @@ public class BatalhaNaval
         }
         else if (posY + tamanhoBarco <= tamanhoTab){
             if (!semBarcoNaLinha(posX, posY)) {
+                colocarBarco(posY, posX, true);
                 return true;
             }
         }
@@ -69,8 +70,8 @@ public class BatalhaNaval
     }
     public static int contarPartesBarcoNaLinha(int i, int j, char simbolo){
         int countPartes = 0;
-        for (int k = i; k < tamanhoBarco; k++) {
-            if (tabuleiro[j][k] == simbolo)
+        for (int k = j; k < j + tamanhoBarco; k++) {
+            if (tabuleiro[i][k] == simbolo)
                 countPartes++;
         }
         return countPartes;
@@ -82,18 +83,24 @@ public class BatalhaNaval
     }
     public static int contarPartesBarcoNaColuna(int i, int j, char simbolo){
         int countPartes = 0;
-        for (int k = i; k < tamanhoBarco; k++) {
+        for (int k = i; k < i + tamanhoBarco; k++) {
             if (tabuleiro[k][j] == simbolo)
                 countPartes++;
         }
         return countPartes;
     }
     public static void colocarBarco(int i, int j, boolean linha) {
+        for (int k = i; k < i + tamanhoBarco; k++){
+            if (linha)
+                tabuleiro[j][k] = '@';
+            else tabuleiro[k][j] = '@';
+        }
     }
     public static void main(String[] args) throws InterruptedException {
         criarTabuleiro();
         iniciarJogo();
-        criarTabuleiro();
+        mostrarTabuleiro();
+        verificarBarco();
         mostrarTabuleiro();
     }
 }
