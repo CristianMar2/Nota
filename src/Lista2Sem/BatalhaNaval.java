@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BatalhaNaval
 {
-    public static final int tamanhoTab = 5;
+    public static final int tamanhoTab = 10;
     public static final int tamanhoBarco = 3;
     public static final int quantidadeBarco = 3;
     public static char[][] tabuleiro;
