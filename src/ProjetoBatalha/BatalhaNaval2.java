@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BatalhaNaval2 {
-    public static final int TAMANHO_TAB = 10; // constantye sempre tudo maiusculo
+    public static final int TAMANHO_TAB = 10; // constante sempre tudo maiúsculo
     public static final int TAMANHO_BARCO = 3;
     public static final int QUANTIDADE_BARCO = 6;
     public static char[][] tabuleiro, tabuleiro2;
@@ -24,7 +24,7 @@ public class BatalhaNaval2 {
             Arrays.fill(tabuleiro2[i], '°');
         }
     }
-    public static void mostrarTabuleiro() {
+    public static void mostrarTabuleiro(char[][] tab1, char[][]tab2) {
         int i;
         for (i = 0; i < TAMANHO_TAB; i++)
             System.out.printf("\t" + (i + 1));
@@ -111,7 +111,7 @@ public class BatalhaNaval2 {
             criarTabuleiro();
             mostrarJogoComeçando();
             criarBarco();
-            mostrarTabuleiro();
+            mostrarTabuleiro(tabuleiro, tabuleiro2);
             iniciarJogo();
             System.out.println("Deseja jogar novamente ? (Digite 1 para Sim ou qualquer outro número para não)");
         }while(novoJogo == 1);
@@ -153,6 +153,6 @@ public class BatalhaNaval2 {
         if (tabuleiro[linha][coluna] == '°')
             tabuleiro[linha][coluna] = '~';
         else tabuleiro[linha][coluna] = '*';
-        mostrarTabuleiro();
+        mostrarTabuleiro(tabuleiro, tabuleiro2);
     }
 }
